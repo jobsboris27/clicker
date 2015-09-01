@@ -1,0 +1,13 @@
+$line-height: 32px;
+
+/* vertical rhythm function */
+@function vr($amount) {
+@return $line-height * $amount;
+}
+
+
+/* input */
+.selector { margin-bottom: vr(2) }
+
+/* output */
+.selector { margin-bottom: 64px; }
