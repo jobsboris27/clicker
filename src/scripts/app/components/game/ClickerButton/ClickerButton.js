@@ -7,7 +7,7 @@ export default class ClickerButton extends React.Component {
   }
   handleClick = (e) => {
     e.preventDefault();
-    ClickerCounterActions.incCount();
+    ClickerCounterActions.addCount();
   };
   render() {
 

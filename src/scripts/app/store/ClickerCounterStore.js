@@ -1,9 +1,11 @@
 import { EventEmitter } from 'events';
 import AppDispatcher from '../dispatcher/AppDispatcher.js';
-import { INC_COUNTER_CLICK, PAY_COUNTER_CLICK } from '../constants/ClickerCounterConstants.js';
+import { ADD_COUNTER_CLICK, BUY_COUNTER_CLICK } from '../constants/ClickerCounterConstants.js';
 const CHANGE_EVENT = 'CHANGE_EVENT';
 
 let _count = 0;
+let _tickBonuses = undefined;
+let _clickBonuses = undefined;
 
 class ClickerCounterStore extends EventEmitter {
   emitChange() {
@@ -21,6 +23,15 @@ class ClickerCounterStore extends EventEmitter {
   getCount() {
     return _count;
   }
+
+  getTickBonuses() {
+    return _tickBonuses;
+  }
+
+  getClickBonuses() {
+    return _clickBonuses;
+  }
+
 }
 
 let store = new ClickerCounterStore();
@@ -29,13 +40,13 @@ AppDispatcher.register(payload => {
 
   switch (payload.type) {
 
-    case INC_COUNTER_CLICK:
-      _count++;
+    case ADD_COUNTER_CLICK:
+      _count = _count + payload.count;
       store.emitChange();
       break;
-    case PAY_COUNTER_CLICK:
-      console.log(payload.payCount);
-      _count = _count - payload.payCount;
+
+    case BUY_COUNTER_CLICK:
+      _count = (_count - payload.bayCount) < 0 ? _count : _count - payload.bayCount;
       store.emitChange();
       break;
   }

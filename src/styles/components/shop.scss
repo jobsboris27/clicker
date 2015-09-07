@@ -1,3 +1,6 @@
 .shop{
   @extend .animated, .fadeIn;
 }
+.list-group-item{
+  margin-bottom: 5px;
+}

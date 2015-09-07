@@ -1,20 +1,24 @@
 import React from 'react';
 import AppDispatcher from '../dispatcher/AppDispatcher.js';
-import { INC_COUNTER_CLICK, PAY_COUNTER_CLICK } from '../constants/ClickerCounterConstants.js';
+import { ADD_COUNTER_CLICK, BUY_COUNTER_CLICK } from '../constants/ClickerCounterConstants.js';
 
 export default {
 
-  incCount() {
+  addCount(count = 1) {
     AppDispatcher.dispatch({
-      type: INC_COUNTER_CLICK
+      type: ADD_COUNTER_CLICK,
+      count: count
     });
   },
 
-  payCount(count) {
+  buyCount(count, typeBonus) {
+
     AppDispatcher.dispatch({
-      type: PAY_COUNTER_CLICK,
-      payCount: count
+      type: BUY_COUNTER_CLICK,
+      bayCount: count,
+      typeBonus: typeBonus
     });
   }
+
 
 }
